@@ -4,9 +4,11 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEdit, faTimes} from '@fortawesome/free-solid-svg-icons';
 
-const CardKontak = ({id, kontakItem}) => {
+const CardKontak = ({id, kontakItem, navigation}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('Detail Kontak', {id})}>
       <View>
         <Text style={styles.nama}>{kontakItem.nama}</Text>
         <Text style={styles.noHp}>No. HP : {kontakItem.nomorHp}</Text>
@@ -21,7 +23,7 @@ const CardKontak = ({id, kontakItem}) => {
 
 CardKontak.propTypes = {
   id: PropTypes.string,
-  kontakItem: PropTypes.string,
+  kontakItem: PropTypes.object,
 };
 
 export default CardKontak;

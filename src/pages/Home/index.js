@@ -44,7 +44,12 @@ export default function Home({navigation}) {
       <View style={styles.listKontak}>
         {kontaksKey.length > 0 ? (
           kontaksKey.map((key) => (
-            <CardKontak key={key} id={key} kontakItem={kontaks[key]} />
+            <CardKontak
+              key={key}
+              id={key}
+              kontakItem={kontaks[key]}
+              navigation={navigation}
+            />
           ))
         ) : (
           <Text>Daftar Kosong</Text>

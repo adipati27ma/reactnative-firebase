@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {Home, TambahKontak} from '../pages';
+import {Home, TambahKontak, DetailKontak} from '../pages';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +14,7 @@ const Router = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen name="Tambah Kontak" component={TambahKontak} />
+      <Stack.Screen name="Detail Kontak" component={DetailKontak} />
     </Stack.Navigator>
   );
 };
