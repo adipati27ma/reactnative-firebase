@@ -33,7 +33,7 @@ const EditKontak = ({navigation, route}) => {
       kontakReferensi
         .update(kontak)
         .then((data) => {
-          Alert.alert('Sukses', 'Kontak telah diperbaharui!');
+          Alert.alert('Sukses', 'Kontak telah diperbarui!');
           navigation.replace('Home');
           // console.log(data);
         })
