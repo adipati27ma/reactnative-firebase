@@ -14,7 +14,12 @@ const CardKontak = ({id, kontakItem, navigation, removeData}) => {
         <Text style={styles.noHp}>No. HP : {kontakItem.nomorHp}</Text>
       </View>
       <View style={styles.icon}>
-        <FontAwesomeIcon icon={faEdit} color="orange" size={25} />
+        <FontAwesomeIcon
+          icon={faEdit}
+          color="orange"
+          size={25}
+          onPress={() => navigation.navigate('Edit Kontak', {id})}
+        />
         <FontAwesomeIcon
           icon={faTimes}
           color="red"
