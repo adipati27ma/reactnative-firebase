@@ -9,7 +9,7 @@ const Router = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home Screen"
+        name="Home"
         component={Home}
         options={{headerShown: false}}
       />

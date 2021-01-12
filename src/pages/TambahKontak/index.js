@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text, Alert} from 'react-native';
+
 import {InputData} from '../../components';
 
-const TambahKontak = () => {
+import FIREBASE from '../../config/FIREBASE';
+
+const TambahKontak = ({navigation}) => {
   const [state, setState] = useState({
     nama: '',
     nomorHp: '',
@@ -17,8 +20,27 @@ const TambahKontak = () => {
   };
 
   const handleOnSubmit = () => {
-    console.log('Kirim data ke Firebase!');
-    console.log(state);
+    if (state.nama && state.nomorHp && state.alamat) {
+      const kontakReferensi = FIREBASE.database().ref('Kontak');
+      const kontak = {
+        nama: state.nama,
+        nomorHp: state.nomorHp,
+        alamat: state.alamat,
+      };
+
+      kontakReferensi
+        .push(kontak)
+        .then((data) => {
+          Alert.alert('Sukses', 'Kontak tersimpan!');
+          navigation.replace('Home');
+          // console.log(data);
+        })
+        .catch((error) => {
+          console.log(`Error : ${error}`);
+        });
+    } else {
+      Alert.alert('Error', 'Nama, Nomor HP, dan Alamat wajib diisi!');
+    }
   };
 
   return (
