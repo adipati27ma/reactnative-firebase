@@ -1,15 +1,16 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <View style={styles.page}>
       <Text>Halaman Home</Text>
       <View style={styles.wrapperButton}>
-        <TouchableOpacity style={styles.btnTambah}>
+        <TouchableOpacity
+          style={styles.btnTambah}
+          onPress={() => navigation.navigate('Tambah Kontak')}>
           <FontAwesomeIcon icon={faPlus} size={20} color="white" />
         </TouchableOpacity>
       </View>
@@ -30,7 +31,16 @@ const styles = StyleSheet.create({
   },
   btnTambah: {
     padding: 20,
-    backgroundColor: 'skyblue',
+    backgroundColor: 'red',
     borderRadius: 30,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
 });
