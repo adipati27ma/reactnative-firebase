@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +18,7 @@ export default function Home({navigation}) {
     kontaks: {},
     kontaksKey: [],
   });
+  const [isRemoved, setIsRemoved] = useState(false);
 
   const {kontaks, kontaksKey} = state;
 
@@ -32,7 +34,33 @@ export default function Home({navigation}) {
           kontaksKey: Object.keys(kontakItem),
         });
       });
-  }, []);
+
+    setIsRemoved(false);
+  }, [isRemoved]);
+
+  const removeData = (id) => {
+    Alert.alert(
+      'Info',
+      'Anda yakin ingin menghapus data kontak?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            FIREBASE.database().ref(`Kontak/${id}`).remove();
+
+            Alert.alert('Hapus', 'Sukses hapus data!');
+            setIsRemoved(true);
+          },
+        },
+      ],
+      {cancelable: false},
+    );
+  };
 
   return (
     <View style={styles.page}>
@@ -49,6 +77,7 @@ export default function Home({navigation}) {
               id={key}
               kontakItem={kontaks[key]}
               navigation={navigation}
+              removeData={removeData}
             />
           ))
         ) : (
