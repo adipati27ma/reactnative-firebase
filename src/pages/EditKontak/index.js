@@ -86,7 +86,7 @@ const EditKontak = ({navigation, route}) => {
         onChangeText={handleOnChangeText}
       />
       <TouchableOpacity style={styles.tombolSubmit} onPress={handleOnSubmit}>
-        <Text style={styles.submitText}>SUBMIT</Text>
+        <Text style={styles.submitText}>UPDATE</Text>
       </TouchableOpacity>
     </View>
   );
